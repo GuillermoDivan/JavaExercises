@@ -16,7 +16,7 @@ public class Ej14 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("Ingrese la cantidad en Euros");
-        double euros = input.nextInt();
+        double euros = input.nextDouble();
         Scanner input2 = new Scanner(System.in);
         System.out.println("Ingrese la moneda a convertir ('Dolares', 'Libras', o 'Yenes').");
         String moneda = input2.nextLine();
