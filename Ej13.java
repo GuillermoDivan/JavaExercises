@@ -7,12 +7,11 @@ cuadrado tiene 4 elementos por lado se deberá dibujar lo siguiente:
 */
 
 import java.util.Scanner;
-import java.lang.*;
 
 public class Ej13 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.println("Ingrese u número entero positivo");
+        System.out.println("Ingrese un número entero positivo");
         int num = input.nextInt();
 
         for (int i = 0; i < num; i++) {
