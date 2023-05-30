@@ -9,18 +9,17 @@ public class Ej19 {
     public static void main(String[] args) {
         int[][] matriz1 = generarMatriz();
         mostrarMatriz(matriz1);
-        System.out.println("");
-        int[][] matriz2 = trasponerMatriz(matriz1);
-        System.out.println("");
+       System.out.println("");
+        int[][] matriz2 = matriz1;
         corroborarAntisimetria(matriz1, matriz2);
     }
 
     public static int[][] generarMatriz() {
         Scanner input = new Scanner(System.in);
-        int[][] matriz1 = new int[2][2];
+        int[][] matriz1 = new int[3][3];
 
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 System.out.println("Ingresá el número para la casilla [" + i + "][" + j + "].");
                 matriz1[i][j] = input.nextInt();
             }
@@ -30,40 +29,22 @@ public class Ej19 {
 
     public static void mostrarMatriz(int[][] matriz1) {
 
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 System.out.print("[" + matriz1[i][j] + "], ");
             }
             System.out.println("");
         }
     }
 
-    public static int[][] trasponerMatriz(int[][] matriz1) {
-        int[][] matriz2 = new int[2][2];
-
-        for (int j = 0; j < 2; j++) {
-            for (int i = 0; i < 2; i++) {
-                matriz2[i][j] = matriz1[i][j];
-                System.out.print("[" + matriz2[i][j] + "], ");
-            }
-            System.out.println("");
-        }
-        return matriz2;
-    }
-
     public static void corroborarAntisimetria(int[][] matriz1, int[][] matriz2) {
         boolean antisimetria = true;
-        int aux1 = 0;
-        int aux2 = 0;
 
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                    System.out.println("comparando celda [" + i + "][" + j + "]");
-                    aux1 = matriz1[i][j];
-                    aux2 = -matriz2[i][j];
-                    if  (aux1 == aux2 && aux1 != 0) {
-                        System.out.println("pos/neg (" + aux1 + ")(" + aux2 + ")");
-                        antisimetria =false;
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                    if  (matriz1[i][j] != (matriz2[j][i] * -1)) {
+                        antisimetria = false;
                     }
 
             }
