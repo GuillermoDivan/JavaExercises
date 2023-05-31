@@ -8,7 +8,9 @@ public class Ej18 {
        int[][] matriz1 = generarMatriz();
         System.out.println("");
         System.out.println("");
-        trasponerMatriz(matriz1);
+        int[][] matriz2 = trasponerMatriz(matriz1);
+        mostrarMatriz(matriz2);
+
     }
 
     public static int[][] generarMatriz(){
@@ -24,16 +26,25 @@ public class Ej18 {
         return matriz1;
 }
 
-public static void trasponerMatriz(int[][] matriz1){
+public static int[][] trasponerMatriz(int[][] matriz1){
     int[][] matriz2 = new int[4][4];
 
     for (int j = 0; j < 4; j++) {
         for (int i = 0; i < 4; i++) {
-            matriz2[i][j] = matriz1[i][j];
-            System.out.print("[" + matriz2[i][j] + "], ");
+            matriz2[i][j] = matriz1[j][i];
         }
-        System.out.println("");
     }
+    return matriz2;
 }
+
+    public static void mostrarMatriz(int[][] matriz) {
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.out.print("[" + matriz[i][j] + "], ");
+            }
+            System.out.println("");
+        }
+    }
 
 }

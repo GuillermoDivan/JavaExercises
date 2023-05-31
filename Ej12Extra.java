@@ -12,14 +12,18 @@ Nota: investigar función equals() y como convertir números a String.*/
 public class Ej12Extra {
     public static void main(String[] args){
         int[][][] matriz = new int[10][10][10];
+        String centena = ""; String decena = ""; String unidad = "";
 
         for (int i = 0; i < 10; i++){
             for (int j = 0; j < 10; j++){
                 for (int k = 0; k < 10; k++){
-                    if (k == 3) {
-                        String letra = String.valueOf(k);
-                        System.out.println(letra);}
-                    System.out.println(i+ "-"+ j+ "-"+ k);
+                centena = String.valueOf(i);
+                    decena = String.valueOf(j);
+                    unidad = String.valueOf(k);
+                    if (centena.equals("3")) {centena = "E"; }
+                    if (decena.equals("3")) {decena = "E"; }
+                    if (unidad.equals("3")) {unidad = "E"; }
+                    System.out.println(centena+ "-"+ decena+ "-"+ unidad);
                 }
             }
         }
