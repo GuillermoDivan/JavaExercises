@@ -14,12 +14,15 @@ principales que todas las celdas sean iguales.
  */
 
 public class EjZombies {
+
     public static void main(String[] args) {
+
+
 
         String muestra = validarMuestra();
         int largoMuestra = muestra.length();
         int vector = (int) Math.sqrt(largoMuestra);
-        String[][] matriz = ubicarMuestra(muestra, vector);
+       String[][] matriz = ubicarMuestra(muestra, vector);
         imprimirMuestra(matriz, vector);
         boolean test1 = test1(matriz, vector); //Devuelve diagonal 1, donde j == i.
         boolean test2 = test2(matriz, vector); //Devuelve diagonal 2, donde i == n-1-j.
@@ -31,6 +34,7 @@ public class EjZombies {
             System.out.println("Esta persona está sana, por ahora.");
         }
     }
+
     public static String validarMuestra () {
         String muestra;
         boolean validacion1;
@@ -142,3 +146,4 @@ public class EjZombies {
     }
 
 }
+
