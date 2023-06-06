@@ -15,46 +15,43 @@ public class Ej23Extra {
     public static void main(String[] args){
 
         String[][] arrayPalabras = ingresarPalabras();
-        //int[] arrayFilas = aleatorizarFilas();
-        //String[][] matriz = ubicarPalabras(arrayPalabras, arrayFilas);
-        //imprimirMatriz(matriz);
+        int[] arrayFilas = aleatorizarFilas();
+        System.out.println("");
+        String[][] matriz = ubicarPalabras(arrayPalabras, arrayFilas);
+        System.out.println("");
+        imprimirMatriz(matriz);
     }
 
     public static String[][] ingresarPalabras() {
         String[] palabrasEnteras = new String[5];
-        String[][] arrayPalabras = new String[5][5];
-        String caracter = "*";
+        String[][] arrayPalabras = new String[5][20];
 
-        //For <5 y while: Ingresa a completar las cinco palabras, corrobora largo.
-        //Ingresa cada palabra en cada lugar de un vector[] (palabrasEnteras).
         for (int i = 0; i < 5; i++) {
             String palabra = "a";
             while ((palabra.length() < 3) || (palabra.length() > 5)) {
                 Scanner input = new Scanner(System.in);
                 System.out.println("Ingrese una palabra de 3 a 5 letras");
                 palabra = input.nextLine();
-            } if ((palabra.length() > 2) || (palabra.length() < 6)) { palabrasEnteras[i] = palabra; }
-        }
+            }
+            if (palabra.length() == 3) { palabra = palabra + "!!!!!!!!!!!!!!!!!"; }
+            if (palabra.length() == 4) { palabra = palabra + "!!!!!!!!!!!!!!!!"; }
+            if (palabra.length() == 5) { palabra = palabra + "!!!!!!!!!!!!!!!"; }
+            palabrasEnteras[i] = palabra; }
 
-        //For anidando for. Toma cada palabra del vector[] y las ubica en celdas letra por letra,
-        //De modo tal que mantiene orden (como filas). Ej:
-        // [PAN][PAZ][MÁS]
-        // [P] [A] [N]
-        // [P] [A] [Z]
-        // [M] [Á] [S]
         for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                if (j < 4) {
-                    caracter = palabrasEnteras[i].substring(j, j + 1);
-                    if (caracter.equals("")) { break; }
-                    arrayPalabras[i][j] = caracter;
-                } else {
-                    caracter = palabrasEnteras[i].substring(4);
-                    if (caracter.equals("")) { break; }
-                    arrayPalabras[i][j] = caracter;
-                }
+            String palabraElegida = palabrasEnteras[i];
+            for (int j = 0; j < 20; j++) {
+                if (j == 19) { arrayPalabras[i][j] = "!";}
+                else { arrayPalabras[i][j] = palabraElegida.substring(j,j+1); }
             }
         }
+
+        /*for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 20; j++) {
+                System.out.print(arrayPalabras[i][j]+ "|");
+            }
+            System.out.println("");
+        }*/
 
         return arrayPalabras;
     }
@@ -62,15 +59,15 @@ public class Ej23Extra {
     public static int[] aleatorizarFilas(){
         int[] arrayFilas = new int[5];
             for (int i = 0; i < 5; i++) {
-                arrayFilas[i] = (int) (Math.random() * 10);
-                System.out.print("["+arrayFilas[i]+"]");
+                arrayFilas[i] = (int) (Math.random() * 20);
+                //System.out.print("["+arrayFilas[i]+"]");
             }
             Arrays.sort(arrayFilas);
 
-        System.out.println("");
+        /*System.out.println("");
             for (int i = 0; i < 5; i++) {
                 System.out.print("["+arrayFilas[i]+"]");
-            }
+            }*/
 
             for (int i = 0; i < 5; i++) {
                 if (i < 4) {
@@ -80,37 +77,38 @@ public class Ej23Extra {
                 }
             }
 
-        System.out.println("");
+        /*System.out.println("");
             for (int i = 0; i < 5; i++) {
                     System.out.print("["+arrayFilas[i]+"]");
-            }
+            }*/
 
         return arrayFilas;
     }
 
     public static String[][] ubicarPalabras(String[][] arrayPalabras, int[] arrayFilas) {
+        int[][] auxiliar = new int[20][20];
         String[][] matriz = new String[20][20];
 
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
-                if (arrayFilas[i] == i) {
-                    for (int k = 0; k < 5; k++) {
-                        for (int l = 0; l < 5; l++) {
-                            matriz[i][j] = arrayPalabras[k][l];
+                auxiliar[i][j] = (int) (Math.random() * 10);
+                matriz[i][j] = matriz[i][j].valueOf(auxiliar[i][j]);
+            }
+        }
+
+        for (int i = 0; i < 20; i++) {
+            for (int k = 0; k < 5; k++) {
+                if (arrayFilas[k] == i) {
+                    for (int j = 0; j < 20; j++) {
+                        matriz[i][j] = arrayPalabras[k][j];
+                        if (matriz[i][j].equals("!")) {
+                            auxiliar[i][j] = (int) (Math.random() * 10);
+                            matriz[i][j] = matriz[i][j].valueOf(auxiliar[i][j]);
                         }
                     }
                 }
             }
         }
-
-                for (int i = 0; i < 20; i++) {
-                    for (int j = 0; j < 20; j++) {
-                        if ((matriz[i][j].equals(" ")) || (matriz[i][j].equals(""))) {
-                            matriz[i][j] = "*";
-                        }
-                    }
-                }
-
 
             return matriz;
         }
@@ -118,8 +116,9 @@ public class Ej23Extra {
         public static void imprimirMatriz(String[][] matriz) {
             for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 20; j++) {
-                    System.out.println(matriz[i][j]);
+                    System.out.print(matriz[i][j]);
                 }
+                System.out.println("");
             }
 
         }
