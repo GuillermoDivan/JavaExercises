@@ -52,6 +52,12 @@ public class MetodosUtiles {
     return matriz2;
 }
 
+    public static boolean contieneValorBuscadoEnString(String[] array, String valorBuscado){
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].equalsIgnoreCase(valorBuscado)) { return true; }
+        } return false;
+    }
+
 
 }
 

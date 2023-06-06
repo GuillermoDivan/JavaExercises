@@ -1,5 +1,4 @@
-/* Construya un programa que lea 5 palabras de mínimo 3 y hasta 5 caracteres y, a medida
-que el usuario las va ingresando, construya una “sopa de letras para niños” de tamaño de
+/* Construya un programa que lea 5 palabras de mínimo 3 y hasta 5 caracteres y luego construya una “sopa de letras para niños” de tamaño de
 20 x 20 caracteres. Las palabras se ubicarán todas en orden horizontal en una fila que
 será seleccionada de manera aleatoria. Una vez concluida la ubicación de las palabras,
 rellene los espacios no utilizados con un número aleatorio del 0 al 9. Finalmente imprima
@@ -33,6 +32,11 @@ public class Ej23Extra {
                 System.out.println("Ingrese una palabra de 3 a 5 letras");
                 palabra = input.nextLine();
             }
+
+            // Llenar el 20x20 con asteriscos, cuando se sortea la fila se corrobora que tenga asterisco en j==0.
+            // While distinto de asterisco, vuelve a sortear.
+            // Reemplazar luego asteriscos por números al azar.
+
             if (palabra.length() == 3) { palabra = palabra + "!!!!!!!!!!!!!!!!!"; }
             if (palabra.length() == 4) { palabra = palabra + "!!!!!!!!!!!!!!!!"; }
             if (palabra.length() == 5) { palabra = palabra + "!!!!!!!!!!!!!!!"; }
@@ -41,17 +45,10 @@ public class Ej23Extra {
         for (int i = 0; i < 5; i++) {
             String palabraElegida = palabrasEnteras[i];
             for (int j = 0; j < 20; j++) {
-                if (j == 19) { arrayPalabras[i][j] = "!";}
+                if (j == 19) { arrayPalabras[i][j] =palabraElegida.substring(j);}
                 else { arrayPalabras[i][j] = palabraElegida.substring(j,j+1); }
             }
         }
-
-        /*for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 20; j++) {
-                System.out.print(arrayPalabras[i][j]+ "|");
-            }
-            System.out.println("");
-        }*/
 
         return arrayPalabras;
     }
@@ -60,27 +57,14 @@ public class Ej23Extra {
         int[] arrayFilas = new int[5];
             for (int i = 0; i < 5; i++) {
                 arrayFilas[i] = (int) (Math.random() * 20);
-                //System.out.print("["+arrayFilas[i]+"]");
             }
             Arrays.sort(arrayFilas);
 
-        /*System.out.println("");
-            for (int i = 0; i < 5; i++) {
-                System.out.print("["+arrayFilas[i]+"]");
-            }*/
-
             for (int i = 0; i < 5; i++) {
                 if (i < 4) {
-                    if (arrayFilas[i] >= arrayFilas[i + 1]) {
-                        arrayFilas[i + 1] = arrayFilas[i] + 1;
-                    }
+                    if (arrayFilas[i] >= arrayFilas[i + 1]) { arrayFilas[i + 1] = arrayFilas[i] + 1; }
                 }
             }
-
-        /*System.out.println("");
-            for (int i = 0; i < 5; i++) {
-                    System.out.print("["+arrayFilas[i]+"]");
-            }*/
 
         return arrayFilas;
     }
@@ -122,4 +106,6 @@ public class Ej23Extra {
             }
 
         }
+
+
     }
